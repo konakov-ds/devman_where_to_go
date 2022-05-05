@@ -12,6 +12,11 @@ class Place(models.Model):
         return self.title
 
 
-class PlaceImage(models.Model):
-    img = models.ImageField(verbose_name='img')
+class Image(models.Model):
+    img_id = models.IntegerField(default=1)
+    name = models.CharField(max_length=200)
+    img = models.ImageField()
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.img_id} {self.place}'
