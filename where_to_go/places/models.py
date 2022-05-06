@@ -16,7 +16,11 @@ class Image(models.Model):
     img_id = models.IntegerField(default=1)
     name = models.CharField(max_length=200)
     img = models.ImageField()
-    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    place = models.ForeignKey(
+        Place,
+        related_name='images',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f'{self.img_id} {self.place}'
