@@ -5,7 +5,9 @@ from django.shortcuts import get_object_or_404, render
 
 
 def create_json_for_place(request, place_id):
-    place = get_object_or_404(Place, id=place_id)
+    place = Place.objects.prefetch_related('images').all()
+    place = get_object_or_404(place, id=place_id)
+
     place_content = {
         'title': place.title,
         'imgs': [image.img.url for image in place.images.all()],
