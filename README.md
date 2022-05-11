@@ -1,2 +1,17 @@
-# devman_where_to_go
-Интерактивная карта Москвы
+# Куда пойти — Москва глазами Артёма
+
+## Как запустить
+
+- Скачайте код
+- Установите зависимости `pip install -r requirements.txt`
+- Создайте базу данных проекта `python3 manage.py migrate`
+- Запустите сервер командой `python3 manage.py runserver`
+
+## Переменные окружения
+
+Создайте файл `.env` рядом с `manage.py`
+
+Доступны 3 переменные:
+- `DEBUG` — True, если необходимо вывести отладочную информацию.
+- `SECRET_KEY` — секретный ключ проекта
+- `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
