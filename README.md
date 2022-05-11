@@ -13,5 +13,5 @@
 
 Доступны 3 переменные:
 - `DEBUG` — True, если необходимо вывести отладочную информацию.
-- `SECRET_KEY` — секретный ключ проекта
-- `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
+- `SECRET_KEY` — секретный ключ проекта.
+- `ALLOWED_HOSTS` — см [документацию](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
