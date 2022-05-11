@@ -31,7 +31,7 @@ SECRET_KEY = env('SECRET_KEY', default='SECRET_KEY')
 DEBUG = env.bool("DEBUG", default=True)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS',
-                         default=['markkonakov.pythonanywhere.com'])
+                         default=['konakovmark.pythonanywhere.com'])
 
 
 # Application definition
