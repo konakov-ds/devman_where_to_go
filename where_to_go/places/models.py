@@ -14,7 +14,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    img_id = models.IntegerField(default=1)
+    img_id = models.IntegerField(default=0)
     name = models.CharField(max_length=200)
     img = models.ImageField()
     place = models.ForeignKey(
@@ -28,6 +28,9 @@ class Image(models.Model):
             '<img src="{url}" style="max-height:200px"/>',
             url=self.img.url,
         )
+
+    class Meta:
+        ordering = ['img_id']
 
     def __str__(self):
         return f'{self.img_id} {self.place}'
