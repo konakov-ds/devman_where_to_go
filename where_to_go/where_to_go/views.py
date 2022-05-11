@@ -1,7 +1,29 @@
-
+from django.http import HttpResponse
+import json
 from django.http import JsonResponse
 from places.models import Place
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+
+
+def show_place(request, place_id):
+    place = get_object_or_404(Place, id=place_id)
+    place_content = {
+        'title': place.title,
+        'imgs': [image.img.url for image in place.images.all()],
+        'description_short': place.description_short,
+        'description_long': place.description_long,
+        'coordinates': {
+            'lng': place.lng,
+            'lat': place.lat
+        }
+    }
+    return JsonResponse(
+        data=place_content,
+        json_dumps_params={
+            'indent': 2,
+            'ensure_ascii': False
+        },
+    )
 
 
 def show_index(request):
@@ -9,16 +31,7 @@ def show_index(request):
     descriptions = []
     context = {}
     for place in places:
-        place_content = {
-            'title': place.title,
-            'imgs': [image.img.url for image in place.images.all()],
-            'description_short': place.description_short,
-            'description_long': place.description_long,
-            'coordinates': {
-                'lng': place.lng,
-                'lat': place.lat
-            }
-        }
+
         descriptions.append(
             {
                 "type": "Feature",
@@ -38,6 +51,5 @@ def show_index(request):
             "features": descriptions
         }
         context['places_description'] = places_description
-        print(context)
 
     return render(request, 'index.html', context=context)
