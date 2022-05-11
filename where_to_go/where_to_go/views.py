@@ -1,11 +1,10 @@
-from django.http import HttpResponse
-import json
 from django.http import JsonResponse
+from django.urls import reverse
 from places.models import Place
 from django.shortcuts import get_object_or_404, render
 
 
-def show_place(request, place_id):
+def create_json_for_place(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     place_content = {
         'title': place.title,
@@ -31,7 +30,6 @@ def show_index(request):
     descriptions = []
     context = {}
     for place in places:
-
         descriptions.append(
             {
                 "type": "Feature",
@@ -42,7 +40,7 @@ def show_index(request):
                 "properties": {
                     "title": place.title,
                     "placeId": place.title,
-                    "detailsUrl": "./static/places/moscow_legends.json"
+                    "detailsUrl": reverse('show_place', args=[place.id])
                 }
             }
         )
