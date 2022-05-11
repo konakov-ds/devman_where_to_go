@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 
 class Place(models.Model):
@@ -21,6 +22,12 @@ class Image(models.Model):
         related_name='images',
         on_delete=models.CASCADE
     )
+
+    def img_preview(self):
+        return format_html(
+            '<img src="{url}" style="max-height:200px"/>',
+            url=self.img.url,
+        )
 
     def __str__(self):
         return f'{self.img_id} {self.place}'
