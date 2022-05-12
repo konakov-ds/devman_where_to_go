@@ -21,7 +21,8 @@ class Image(models.Model):
     place = models.ForeignKey(
         Place,
         related_name='images',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
 
     def img_preview(self):
