@@ -25,10 +25,12 @@ class Command(BaseCommand):
             place_info = response.json()
             place, _ = Place.objects.update_or_create(
                 title=place_info['title'],
-                description_short=place_info['description_short'],
-                description_long=place_info['description_long'],
-                lng=place_info['coordinates']['lng'],
-                lat=place_info['coordinates']['lat']
+                defaults={
+                    'description_short': place_info['description_short'],
+                    'description_long': place_info['description_long'],
+                    'lng': place_info['coordinates']['lng'],
+                    'lat': place_info['coordinates']['lat'],
+                }
             )
             for img_id, img in enumerate(place_info['imgs']):
                 image, _ = Image.objects.get_or_create(
